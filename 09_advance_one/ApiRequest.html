@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github User Info</title>
+    <style>
+        body {
+            background-color: #212121;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #userInfo {
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="showUserInfo()">Show User Info</button>
+    <div id="userInfo">
+        <img id="userPhoto" alt="User Photo" width="100">
+        <p id="followerCount"></p>
+    </div>
+    
+    <script>
+        function showUserInfo() {
+            const requestUrl = 'https://api.github.com/users/hiteshchoudhary';
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', requestUrl);
+            
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const data = JSON.parse(xhr.responseText);
+                    displayUserInfo(data);
+                }
+            };
+            
+            xhr.send();
+        }
+
+        function displayUserInfo(data) {
+            const userInfoDiv = document.getElementById('userInfo');
+            const userPhoto = document.getElementById('userPhoto');
+            const followerCount = document.getElementById('followerCount');
+
+            userPhoto.src = data.avatar_url;
+            followerCount.textContent = `Followers: ${data.followers}`;
+            
+            userInfoDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

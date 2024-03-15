@@ -1,0 +1,14 @@
+ Default javasrripct 
+javascript ----> synchronous--> one by one code execute hoga
+javascript ----> single threaded language
+
+
+global execution context
+execute one line of code at a time
+each operation waits for the last one to complete before executing 
+
+
+Blocking Code ----> block the flow of program ---> read file sync
+non blocking code ----> doesnot block execution --> read file async
+
+
